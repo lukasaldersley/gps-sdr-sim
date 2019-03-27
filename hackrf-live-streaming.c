@@ -1,5 +1,5 @@
 #if 0
-gcc gpssim.c -D LIVE -lm -O3 -o gps-sdr-sim
+gcc gpssim.c -D LIVE -lm -O3 -o gps-sdr-sim-live
 gcc $0 -o hackrf-live-streaming
 ./hackrf-live-streaming
 exit
@@ -51,7 +51,7 @@ int main(){
 	char cmd5[]="rm gpsstream";
 	char cmd6[]="mkfifo gpsstream";
 	char cmd7[]="hackrf_transfer -t ./gpsstream -f 1575420000 -s 2600000 -a 1 -x 0 &";
-	char cmd8[]="./gps-sdr-sim -e hour---0.--n -l 48.195952, 11.564827,503 -b 8 -t $(date -u +%Y/%m/%d,%H:%M:%S) -i -o gpsstream";
+	char cmd8[]="./gps-sdr-sim-live -e hour---0.--n -l 48.195952, 11.564827,503 -b 8 -t $(date -u +%Y/%m/%d,%H:%M:%S) -i -o gpsstream";
 	char cmd9[]="rm gpsstream";
 	char cmdA[]="sleep 1";
 	char cmdB[]="rm hour---0.--n";
@@ -67,11 +67,11 @@ int main(){
 
 	cmd0[43]=y1000;
 	cmd0[44]=y100;
-	cmd0[45]=cmd0[61]=cmd2[20]=cmd3[12]=cmd8[26]=cmdB[12]=y10;
-	cmd0[46]=cmd0[62]=cmd2[21]=cmd3[13]=cmd8[27]=cmdB[13]=y1;
-	cmd0[48]=cmd0[56]=cmd2[15]=cmd3[7]=cmd8[21]=cmdB[7]=doy100;
-	cmd0[49]=cmd0[57]=cmd2[16]=cmd3[8]=cmd8[22]=cmdB[8]=doy10;
-	cmd0[50]=cmd0[58]=cmd2[17]=cmd3[9]=cmd8[23]=cmdB[9]=doy1;
+	cmd0[45]=cmd0[61]=cmd2[20]=cmd3[12]=cmd8[31]=cmdB[12]=y10;
+	cmd0[46]=cmd0[62]=cmd2[21]=cmd3[13]=cmd8[32]=cmdB[13]=y1;
+	cmd0[48]=cmd0[56]=cmd2[15]=cmd3[7]=cmd8[26]=cmdB[7]=doy100;
+	cmd0[49]=cmd0[57]=cmd2[16]=cmd3[8]=cmd8[27]=cmdB[8]=doy10;
+	cmd0[50]=cmd0[58]=cmd2[17]=cmd3[9]=cmd8[28]=cmdB[9]=doy1;
 
 	//printf("following commands will be executed:\r\n\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n\r\n",cmd0,cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7,cmd8,cmd9,cmdA,cmdB,cmdC);
 	printf("\r\nfollowing commands will be executed:\r\n\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n\r\n",cmd0,cmd2,cmd3,cmd5,cmd6,cmd7,cmd8,cmd9,cmdA,cmdB,cmdC);
