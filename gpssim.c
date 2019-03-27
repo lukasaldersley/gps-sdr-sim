@@ -2008,6 +2008,7 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
+		#ifndef LIVE
 		else
 		{
 			if (subGpsTime(g0, gmin)<0.0 || subGpsTime(gmax, g0)<0.0)
@@ -2022,6 +2023,7 @@ int main(int argc, char *argv[])
 				exit(1);
 			}
 		}
+		#endif
 	}
 	else
 	{
@@ -2051,10 +2053,16 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		if (ieph>=0) // ieph has been set
+		if (ieph>=0){ // ieph has been set
 			break;
+		}
 	}
-
+	#ifdef LIVE
+	if (subGpsTime(gmax,g0) < 0.0)
+	{
+		ieph = neph -1;
+	}
+	#endif
 	if (ieph == -1)
 	{
 		fprintf(stderr, "ERROR: No current set of ephemerides has been found.\n");
